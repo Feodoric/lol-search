@@ -66,6 +66,27 @@
             var ability = new Ability(name, key, tags);
             this._abilities.push(ability);
         }
+
+        // TODO: include scaling ratios in abilities
+
+        var champs = [];
+
+        var newChamp = new Champion('Sion');
+        newChamp.addAbility("Cryptic Gaze", 'Q', ['stun', 'nuke', 'targeted', 'AP']);
+        newChamp.addAbility("Death's Caress", 'W', ['shield', 'aoe', 'AP']);
+        newChamp.addAbility("Enrage", 'E', ['AD buff', 'permanent HP gain']);
+        newChamp.addAbility("Cannibalism", 'R', ['attack speed', 'life steal', 'aura', 'heal']);
+        champs.push(newChamp);
+
+        newChamp = new Champion('Ryze');
+        newChamp.addAbility("Overload", 'Q', ['nuke', 'targeted', 'AP', 'mana']);
+        newChamp.addAbility("Rune Prison", 'W', ['root', 'targeted', 'AP', 'mana']);
+        newChamp.addAbility("Spell Flux", 'E', ['nuke', 'targeted', 'bounces', 'AP', 'MR debuff']);
+        newChamp.addAbility("Desperate Power", 'R', ['spell vamp', 'AOE']);
+        champs.push(newChamp);
+
+
+        console.debug(champs);
     </script>
 </head>
 
