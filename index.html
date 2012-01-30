@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LoL Search</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        /* Override some defaults */
+        html, body {
+            background-color: #eee;
+        }
+
+        body {
+            padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+        }
+
+        .container {
+            width: 820px;
+            /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+        }
+
+        /* The white background content wrapper */
+        .container > .content {
+            background-color: #fff;
+            padding: 20px;
+            /* negative indent the amount of the padding to maintain the grid system */
+            margin: 0 -20px;
+            -webkit-border-radius: 0 0 6px 6px;
+                -moz-border-radius: 0 0 6px 6px;
+                    border-radius: 0 0 6px 6px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        }
+
+        /* Page header tweaks */
+        .page-header {
+            background-color: #f5f5f5;
+            padding: 20px 20px 10px;
+            margin: -20px -20px 20px;
+        }
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript">
+        jQuery.noConflict();
+        console.warn('TODO: write some auto-completing JS!');
+        // TODO: read this http://jqueryui.com/demos/autocomplete/#custom-data
+        // TODO: also read this http://jqueryui.com/demos/autocomplete/#folding
+        // TODO: define classes for Champion and Ability
+        // TODO: for now, only give abilities tags
+
+        var Ability = function(name, key, tags) {
+            this._name = name;
+            this._key = key;
+            this._tags = tags;
+        }
+
+        var Champion = function(name) {
+            this._name = name;
+            this._abilities = [];
+        }
+
+        Champion.prototype.addAbility = function(name, key, tags) {
+            var ability = new Ability(name, key, tags);
+            this._abilities.push(ability);
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
+                <a class="brand" href="/index.html">LoL Searcher</a>
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="content">
+            <div class="page-header">
+                <h1>Champion &amp; Ability Searcher</h1>
+            </div>
+
+            <div class="row">
+                <div class="span14">
+                    <strong>Query:</strong>&nbsp;
+                    <input type="text" name="query" id="query" class="span8" maxlength="80" />
+                </div>
+            </div>
+
+    </div> <!-- /container -->
+
+</body>
+</html>
