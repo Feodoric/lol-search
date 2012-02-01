@@ -4,6 +4,7 @@
     <title>LoL Search</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dot-luv/jquery-ui-1.8.17.custom.css" rel="stylesheet">
     <style type="text/css">
         /* Override some defaults */
         html, body {
@@ -39,6 +40,12 @@
             padding: 20px 20px 10px;
             margin: -20px -20px 20px;
         }
+
+
+        /* Non-bootstrap styles */
+        #champion-info {
+            display: none;
+        }
     </style>
 
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -59,6 +66,9 @@
 
         var Champion = function(name) {
             this.name = name;
+            this.label = name;
+            this.value = name;
+            this.releaseDate = new Date(0);
             this.abilities = [];
             this.searchString = this.name;
         }
@@ -74,39 +84,170 @@
 
         // TODO: use the new searchString variable to run the autocomplete!
         Champion.prototype.updateSearchString = function() {
-            this.searchString = this.name;
+            this.searchString = this.name.toLowerCase();
 
 
             for(var i = 0; i < this.abilities.length; i++) {
-                this.searchString = this.searchString + ' ' + this.abilities[i].name;
-                this.searchString = this.searchString + ' ' + this.abilities[i].key;
+                this.searchString = this.searchString + ' ' + this.abilities[i].name.toLowerCase();
+                this.searchString = this.searchString + ' ' + this.abilities[i].key.toLowerCase();
 
                 for(var j = 0; j < this.abilities[i].tags.length; j++) {
-                    this.searchString = this.searchString + ' ' + this.abilities[i].tags[j];
+                    this.searchString = this.searchString + ' ' + this.abilities[i].tags[j].toLowerCase();
                 }
             }
         }
 
         // TODO: include scaling ratios in abilities
+        // TODO: include champion passive
 
-        var champs = [];
+        var champions = [];
+
+        var newChamp = new Champion('Alistar');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Pulverize", 'Q', ['knockup', 'melee', 'stun', 'aoe', 'ap scaling', 'magic damage']);
+        newChamp.addAbility("Headbutt", 'W', ['targeted', 'knockback', 'ap scaling', 'melee', 'magic damage']);
+        newChamp.addAbility("Triumphant Roar", 'E', ['heal', 'ap scaling', 'ranged']);
+        newChamp.addAbility("Unbreakable Will", 'R', ['clense', 'ad buff', 'damage reduction', 'ultimate']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Annie');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Disintigrate", 'Q', ['targeted', 'ranged', 'ap scaling', 'magic damage']);
+        newChamp.addAbility("Incinerate", 'W', ['cone', 'ap scaling', 'melee', 'magic damage']);
+        newChamp.addAbility("Molten Shield", 'E', ['shield', 'armor buff', 'mr buff', 'ap scaling', 'self']);
+        newChamp.addAbility("Summon Tibbers", 'R', ['summon', 'targeted', 'aoe', 'magic damage', 'ultimate']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Ashe');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Frost Shot", 'Q', ['toggle', 'autoattack effect', 'frost', 'ranged']);
+        newChamp.addAbility("Volley", 'W', ['cone', 'slow', 'frost', 'ad scaling', 'ranged', 'physical damage']);
+        newChamp.addAbility("Hawkshot", 'E', ['passive', 'gold per kill', 'reveal', 'ranged']);
+        newChamp.addAbility("Enchanted Crystal Arrow", 'R', ['skillshot', 'long range', 'stun', 'aoe', 'slow', 'champions only', 'frost', 'ranged', 'magic damage', 'ultimate']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Fiddlesticks');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Terrify", 'Q', ['fear', 'targeted', 'ranged']);
+        newChamp.addAbility("Drain", 'W', ['channel', 'drain', 'ap scaling']);
+        newChamp.addAbility("Dark Wind", 'E', ['ranged', 'damage', 'ap scaling', 'bounce', 'silence']);
+        newChamp.addAbility("Crowstorm", 'R', ['flash', 'aoe', 'channel']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Jax');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Leap Strike", 'Q', ['pounce', 'ranged', 'ap scaling', 'ad scaling', 'physical damage']);
+        newChamp.addAbility("Empower", 'W', ['autoattack buff', 'ap scaling']);
+        newChamp.addAbility("Counter Strike", 'E', ['dodge', 'stun', 'ad scaling', 'physical damage']);
+        newChamp.addAbility("Grandmaster's Might", 'R', ['passive', 'autoattack buff', 'magic damage', 'ap scaling', 'ad scaling', 'bonus ad', 'bonus ap']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Kayle');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Reckoning", 'Q', ['targeted', 'magic damage', 'ap scaling', 'ad scaling', 'slow', 'damage amplification', 'ranged']);
+        newChamp.addAbility("Divine Blessing", 'W', ['heal', 'targeted', 'move speed buff', 'ap scaling', 'ranged']);
+        newChamp.addAbility("Righteous Fury", 'E', ['attack range increase', 'splash damage', 'magic damage', 'ad scaling']);
+        newChamp.addAbility("Intervention", 'R', ['ultimate', 'targeted', 'ranged', 'damage imune']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Master Yi');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        // TODO: how to tag "can hit multiple tagets but player only clicks once and it's not an "aoe" damage"??
+        newChamp.addAbility("Alpha Strike", 'Q', ['targeted', 'magic damage', 'ap scaling', 'flash', 'ranged']);
+        newChamp.addAbility("Meditate", 'W', ['heal', 'channel', 'armor buff', 'ap scaling', 'mr buff']);
+        newChamp.addAbility("Wuju Style", 'E', ['passive', 'ad bonus']);
+        // TODO: stun and/or root immune too?
+        newChamp.addAbility("Highlander", 'R', ['ultimate', 'move speed buff', 'attack speed buff', 'slow immune']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Morgana');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Dark Binding", 'Q', ['skillshot', 'magic damage', 'ap scaling', 'root']);
+        newChamp.addAbility("Tormented Soil", 'W', ['aoe', 'magic damage', 'damage over time', 'ap scaling', 'mr debuff']);
+        newChamp.addAbility("Black Shield", 'E', ['magic shield', 'disable immune', 'ap scaling']);
+        // TODO: aoe or some kind of "multiple targets"??
+        newChamp.addAbility("Soul Shackles", 'R', ['ultimate', 'slow', 'stun', 'magic damage', 'aoe', 'ap scaling']);
+        champions.push(newChamp);
 
         var newChamp = new Champion('Sion');
-        newChamp.addAbility("Cryptic Gaze", 'Q', ['stun', 'nuke', 'targeted', 'AP']);
-        newChamp.addAbility("Death's Caress", 'W', ['shield', 'aoe', 'AP']);
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Cryptic Gaze", 'Q', ['stun', 'targeted', 'ap scaling']);
+        newChamp.addAbility("Death's Caress", 'W', ['shield', 'aoe', 'ap scaling']);
         newChamp.addAbility("Enrage", 'E', ['AD buff', 'permanent HP gain']);
         newChamp.addAbility("Cannibalism", 'R', ['attack speed', 'life steal', 'aura', 'heal']);
-        champs.push(newChamp);
+        champions.push(newChamp);
 
         newChamp = new Champion('Ryze');
-        newChamp.addAbility("Overload", 'Q', ['nuke', 'targeted', 'AP', 'mana']);
-        newChamp.addAbility("Rune Prison", 'W', ['root', 'targeted', 'AP', 'mana']);
-        newChamp.addAbility("Spell Flux", 'E', ['nuke', 'targeted', 'bounces', 'AP', 'MR debuff']);
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Overload", 'Q', ['targeted', 'ap scaling', 'mana scaling']);
+        newChamp.addAbility("Rune Prison", 'W', ['root', 'targeted', 'ap scaling', 'mana scaling']);
+        newChamp.addAbility("Spell Flux", 'E', ['targeted', 'bounce', 'ap scaling', 'mr debuff']);
         newChamp.addAbility("Desperate Power", 'R', ['spell vamp', 'AOE']);
-        champs.push(newChamp);
+        champions.push(newChamp);
 
 
-        console.debug(champs);
+        //console.debug(champions);
+
+
+        jQuery(document).ready(function() {
+            jQuery('#query').autocomplete({
+                minLength: 3,
+                source: function(request, response) {
+                    matches = [];
+                    for(var c = 0; c < champions.length; c++) {
+                        if(champions[c].searchString.indexOf(request.term) != -1) {
+                            // TODO: do a more thorough search of the champs attributes
+                            // TODO: highlight which attribute(s) matched the query
+                            matches.push(champions[c]);
+                        }
+                    }
+                    response(matches);
+                },
+/*
+                search: function(event, ui) {
+                    console.log('search');
+                    console.debug(event);
+                    console.debug(ui);
+                    return false;
+                },
+*/
+                open: function(event, ui) {
+                    console.log('open');
+                    console.debug(event);
+                    console.debug(ui);
+
+                    return false;
+                },
+                focus: function(event, ui) {
+                    console.log('focus');
+                    jQuery('#query').text(ui.item.name);
+
+                    return false;
+                },
+                select: function(event, ui) {
+                    console.log('select');
+                    console.warn('update your jquery ui theme');
+
+                    jQuery('#champion-name').text('');
+                    jQuery('#champion-abilities').empty();
+
+                    console.log('TODO: update the h1 text');
+                    jQuery('#champion-name').text(ui.item.name);
+
+                    console.log('TODO: update the ul items');
+                    for(var a = 0; a < ui.item.abilities.length; a++) {
+                        jQuery('#champion-abilities').append('<li>' + ui.item.abilities[a].name + '</li>');
+                    }
+
+                    console.log('TODO: show #champion-info');
+                    jQuery('#champion-info').show();
+
+                    return false;
+                }
+            });
+
+            jQuery('#query').focus();
+        });
     </script>
 </head>
 
@@ -136,6 +277,16 @@
                 <div class="span14">
                     <strong>Query:</strong>&nbsp;
                     <input type="text" name="query" id="query" class="span8" maxlength="80" />
+                </div>
+            </div>
+
+            <div id="champion-info" class="row">
+                <div class="span2">
+                    <h1 id="champion-name"></h1>
+                </div>
+                <div class="span4">
+                    <ul id="champion-abilities">
+                    </ul>
                 </div>
             </div>
 
