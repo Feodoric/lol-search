@@ -123,7 +123,7 @@
         newChamp.addAbility("Frost Shot", 'Q', ['toggle', 'autoattack effect', 'frost', 'ranged']);
         newChamp.addAbility("Volley", 'W', ['cone', 'slow', 'frost', 'ad scaling', 'ranged', 'physical damage']);
         newChamp.addAbility("Hawkshot", 'E', ['passive', 'gold per kill', 'reveal', 'ranged']);
-        newChamp.addAbility("Enchanted Crystal Arrow", 'R', ['skillshot', 'long range', 'stun', 'aoe', 'slow', 'champions only', 'frost', 'ranged', 'magic damage', 'ultimate']);
+        newChamp.addAbility("Enchanted Crystal Arrow", 'R', ['skillshot', 'long range', 'stun', 'aoe', 'slow', 'champions only', 'frost', 'ranged', 'magic damage', 'ultimate', 'global', 'long range']);
         champions.push(newChamp);
 
         var newChamp = new Champion('Fiddlesticks');
@@ -136,7 +136,7 @@
 
         var newChamp = new Champion('Jax');
         newChamp.releaseDate = new Date(2009, 2, 21);
-        newChamp.addAbility("Leap Strike", 'Q', ['pounce', 'ranged', 'ap scaling', 'ad scaling', 'physical damage']);
+        newChamp.addAbility("Leap Strike", 'Q', ['jump', 'ranged', 'ap scaling', 'ad scaling', 'physical damage']);
         newChamp.addAbility("Empower", 'W', ['autoattack buff', 'ap scaling']);
         newChamp.addAbility("Counter Strike", 'E', ['dodge', 'stun', 'ad scaling', 'physical damage']);
         newChamp.addAbility("Grandmaster's Might", 'R', ['passive', 'autoattack buff', 'magic damage', 'ap scaling', 'ad scaling', 'bonus ad', 'bonus ap']);
@@ -153,7 +153,7 @@
         var newChamp = new Champion('Master Yi');
         newChamp.releaseDate = new Date(2009, 2, 21);
         // TODO: how to tag "can hit multiple tagets but player only clicks once and it's not an "aoe" damage"??
-        newChamp.addAbility("Alpha Strike", 'Q', ['targeted', 'magic damage', 'ap scaling', 'flash', 'ranged']);
+        newChamp.addAbility("Alpha Strike", 'Q', ['targeted', 'magic damage', 'ap scaling', 'jump', 'ranged']);
         newChamp.addAbility("Meditate", 'W', ['heal', 'channel', 'armor buff', 'ap scaling', 'mr buff']);
         newChamp.addAbility("Wuju Style", 'E', ['passive', 'ad bonus']);
         // TODO: stun and/or root immune too?
@@ -169,12 +169,12 @@
         newChamp.addAbility("Soul Shackles", 'R', ['ultimate', 'slow', 'stun', 'magic damage', 'aoe', 'ap scaling']);
         champions.push(newChamp);
 
-        var newChamp = new Champion('Sion');
+        var newChamp = new Champion('Nunu');
         newChamp.releaseDate = new Date(2009, 2, 21);
-        newChamp.addAbility("Cryptic Gaze", 'Q', ['stun', 'targeted', 'ap scaling']);
-        newChamp.addAbility("Death's Caress", 'W', ['shield', 'aoe', 'ap scaling']);
-        newChamp.addAbility("Enrage", 'E', ['AD buff', 'permanent HP gain']);
-        newChamp.addAbility("Cannibalism", 'R', ['attack speed', 'life steal', 'aura', 'heal']);
+        newChamp.addAbility("Consume", 'Q', ['targeted', 'true damae', 'ap scaling', 'heal', 'minions only', 'melee']);
+        newChamp.addAbility("Blood Boil", 'W', ['allies only', 'targeted', 'attack speed buff', 'move speed buff']);
+        newChamp.addAbility("Ice Blast", 'E', ['magic damage', 'slow', 'ap scaling', 'targeted', 'frost']);
+        newChamp.addAbility("Absolute Zero", 'R', ['ultimate', 'slow', 'magic damage', 'aoe', 'ap scaling', 'move speed debuff', 'attack speed debuff']);
         champions.push(newChamp);
 
         newChamp = new Champion('Ryze');
@@ -185,6 +185,63 @@
         newChamp.addAbility("Desperate Power", 'R', ['spell vamp', 'AOE']);
         champions.push(newChamp);
 
+        var newChamp = new Champion('Sion');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Cryptic Gaze", 'Q', ['stun', 'targeted', 'ap scaling']);
+        newChamp.addAbility("Death's Caress", 'W', ['shield', 'aoe', 'ap scaling']);
+        newChamp.addAbility("Enrage", 'E', ['AD buff', 'permanent HP gain']);
+        newChamp.addAbility("Cannibalism", 'R', ['attack speed buff', 'life steal', 'aura', 'heal']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Sivir');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Boomerang Blade", 'Q', ['skillshot', 'ranged', 'passthrough', 'ad scaling', 'ap scaling', 'physical damage']);
+        newChamp.addAbility("Riccochet", 'W', ['bounce', 'physical damage', 'autoattack effect']);
+        newChamp.addAbility("Spell Shield", 'E', ['block debuff']);
+        newChamp.addAbility("On The Hunt", 'R', ['ultimate', 'attack speed buff', 'move speed buff', 'aura']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Soraka');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Starcall", 'Q', ['ranged', 'aoe', 'ap scaling', 'magic damage', 'mr debuff']);
+        newChamp.addAbility("Astral Blessing", 'W', ['targeted', 'allies only', 'heal', 'armor buff', 'ap scaling', 'ranged']);
+        newChamp.addAbility("Infuse", 'E', ['silence', 'restore mana', 'ap scaling', 'magic damage']);
+        newChamp.addAbility("Wish", 'R', ['ultimate', 'heal', 'global', 'ap scaling']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Teemo');
+        // TODO: include "yordle" in Teemo's tags
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Blinding Dart", 'Q', ['ranged', 'blind', 'ap scaling', 'magic damage']);
+        newChamp.addAbility("Move Quick", 'W', ['passive', 'move speed buff']);
+        newChamp.addAbility("Toxic Shot", 'E', ['passive', 'damage over time', 'ap scaling', 'magic damage', 'autoattack effect']);
+        newChamp.addAbility("Noxious Trap", 'R', ['ultimate', 'mushroom', 'placement', 'ap scaling', 'trap', 'magic damage', 'damage over time', 'slow', 'reveal', 'melee']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Tristana');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Rapid Fire", 'Q', ['active', 'attack speed buff']);
+        newChamp.addAbility("Rocket Jump", 'W', ['targeted', 'magic damage', 'ap scaling', 'slow', 'aoe', 'jump']);
+        newChamp.addAbility("Explosive Shot", 'E', ['passive', 'splash damage', 'autoattack effect', 'ap scaling', 'magic damage', 'targeted', 'enemies only', 'damage over time', 'hp regen debuff']);
+        newChamp.addAbility("Buster Shot", 'R', ['ultimate', 'targeted', 'enemies only', 'ap scaling', 'magic damage', 'knockback']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Twisted Fate');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Wild Cards", 'Q', ['ranged', 'cone', 'ap scaling', 'magic damage', 'passthrough', 'skillshot']);
+        newChamp.addAbility("Pick a Card", 'W', ['targeted', 'autoattack effect', 'stun', 'slow', 'ap scaling', 'restore mana', 'aoe', 'ad scaling', 'magic damage']);
+        newChamp.addAbility("Stacked Deck", 'E', ['passive', 'attack speed buff', 'cdr', 'ap scaling', 'magic damage', 'autoattack effect']);
+        newChamp.addAbility("Destiny//Gate", 'R', ['ultimate', 'reveal', 'teleport', 'global', 'channel']);
+        champions.push(newChamp);
+
+        var newChamp = new Champion('Warwick');
+        newChamp.releaseDate = new Date(2009, 2, 21);
+        newChamp.addAbility("Hungering Strike", 'Q', ['melee', 'magic damage', 'ap scaling', 'heal', 'targeted']);
+        newChamp.addAbility("Hunters Call", 'W', ['aoe', 'allies only', 'attack speed buff']);
+        newChamp.addAbility("Blood Scent", 'E', ['reveal', 'aoe', 'move speed buff', 'toggle']);
+        newChamp.addAbility("Infinite Duress", 'R', ['ultimate', 'jump', 'suppress', 'magic damage', 'life steal', 'ad scaling']);
+        champions.push(newChamp);
+
 
         //console.debug(champions);
 
@@ -193,9 +250,10 @@
             jQuery('#query').autocomplete({
                 minLength: 3,
                 source: function(request, response) {
+                    var term = request.term.toLowerCase();
                     matches = [];
                     for(var c = 0; c < champions.length; c++) {
-                        if(champions[c].searchString.indexOf(request.term) != -1) {
+                        if(champions[c].searchString.indexOf(term) != -1) {
                             // TODO: do a more thorough search of the champs attributes
                             // TODO: highlight which attribute(s) matched the query
                             matches.push(champions[c]);
@@ -281,7 +339,7 @@
             </div>
 
             <div id="champion-info" class="row">
-                <div class="span2">
+                <div class="span4">
                     <h1 id="champion-name"></h1>
                 </div>
                 <div class="span4">
