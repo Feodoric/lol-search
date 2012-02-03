@@ -1,5 +1,8 @@
 // TODO: include scaling ratios in abilities
-// TODO: include champion passive
+// TODO: include champion "innate" ability
+// TODO: include general champion tags (e.g. 'ad carry', 'support, 'tank', etc)
+
+// TODO: declare all champions as literals and then iterate through them all to generate their search strings
 
 
 var allChampions = [];
@@ -154,7 +157,7 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Zilean");
 newChamp.releaseDate = new Date(2009, 4, 18);
-newChamp.addAbility("Time Bomb", 'Q', ['targeted', 'aoe', 'delayed', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Time Bomb", 'Q', ['targeted', 'aoe', 'delayed', 'magic damage', 'ap scaling', 'triggered']);
 newChamp.addAbility("Rewind", 'W', ['active', 'cdr']);
 newChamp.addAbility("Time Warp", 'E', ['targeted', 'slow', 'move speed buff']);
 newChamp.addAbility("Chrono Shift", 'R', ['ultimate', 'targeted', 'resurrection', 'ap scaling', 'hp regain']);
@@ -202,7 +205,7 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Cho'Gath");
 newChamp.releaseDate = new Date(2009, 6, 26);
-newChamp.addAbility("Rupture", 'Q', ['knockup', 'slow', 'aoe',  'magic damage', 'ap scaling']);
+newChamp.addAbility("Rupture", 'Q', ['knockup', 'slow', 'aoe',  'magic damage', 'ap scaling', 'delayed']);
 newChamp.addAbility("Feral Scream", 'W', ['cone', 'silence', 'magic damage', 'ap scaling', 'melee']);
 newChamp.addAbility("Vorpal Spikes", 'E', ['autoattack effect', 'splash damage', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Feast", 'R', ['ultimate', 'true damage', 'ap scaling', 'targeted', 'melee', 'hp gain', 'stacks']);
@@ -210,7 +213,7 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Anivia");
 newChamp.releaseDate = new Date(2009, 7, 10);
-newChamp.addAbility("Flash Frost", 'Q', ['skillshot', 'stun', 'aoe', 'chilled', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Flash Frost", 'Q', ['skillshot', 'stun', 'aoe', 'chilled', 'magic damage', 'ap scaling', 'triggered']);
 newChamp.addAbility("Crystalize", 'W', ['terrain']);
 newChamp.addAbility("Frostbite", 'E', ['tageted', 'chilled', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Glacial Storm", 'R', ['ultimate', 'aoe', 'chilled', 'slow', 'attack speed debuff', 'toggle']);
@@ -227,7 +230,7 @@ allChampions.push(newChamp);
 var newChamp = new Champion("Veigar");
 newChamp.releaseDate = new Date(2009, 7, 24);
 newChamp.addAbility("Baleful Strike", 'Q', ['targeted', 'permanent ap gain', 'magic damage', 'ap scaling']);
-newChamp.addAbility("Dark Matter", 'W', ['aoe', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Dark Matter", 'W', ['aoe', 'magic damage', 'ap scaling', 'delayed']);
 newChamp.addAbility("Event Horizon", 'E', ['stun', 'aoe']);
 newChamp.addAbility("Primordial Burst", 'R', ['ultimate', 'targeted', 'magic damage', 'ap scaling']);
 allChampions.push(newChamp);
@@ -256,6 +259,46 @@ newChamp.addAbility("Dazzle", 'E', ['stun', 'targeted', 'magic damage', 'ap scal
 newChamp.addAbility("Radiance", 'R', ['ultimate', 'ad buff', 'ap buff', 'aura', 'magic damage', 'ap scaling']);
 allChampions.push(newChamp);
 
+var newChamp = new Champion("Blitzcrank");
+newChamp.releaseDate = new Date(2009, 9, 2);
+newChamp.addAbility("Rocket Grab", 'Q', ['hook', 'stun', 'magic damage', 'ap scaling', 'skillshot']);
+newChamp.addAbility("Overdrive", 'W', ['move speed buff', 'attack speed buff']);
+newChamp.addAbility("Power Fist", 'E', ['autoattack effect', 'knockup', 'attack damage buff']);
+newChamp.addAbility("Static Field", 'R', ['ultimate', 'silence', 'aoe', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Dr. Mundo");
+newChamp.releaseDate = new Date(2009, 9, 2);
+newChamp.addAbility("Infected Cleaver", 'Q', ['skillshot', 'slow', 'magic damage', 'hp cost', 'missing hp scaling']);
+newChamp.addAbility("Burning Agony", 'W', ['cc reduction', 'aoe', 'magic damage', 'ap scaling', 'hp cost']);
+newChamp.addAbility("Masochism", 'E', ['ad buff', 'missing hp scaling']);
+newChamp.addAbility("Sadism", 'R', ['ultimate', 'hp regen buff', 'move speed buff', 'hp cost']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Janna");
+newChamp.releaseDate = new Date(2009, 9, 2);
+newChamp.addAbility("Howling Gale", 'Q', ['knockup', 'skillshot', 'delayed', 'triggered', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Zephyr", 'W', ['targeted', 'slow', 'move speed buff', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Eye of the Storm", 'E', ['shield', 'structure', 'targeted', 'ad buff', 'ap scaling']);
+newChamp.addAbility("Monsoon", 'R', ['ultimate', 'knockback', 'channel', 'heal', 'aoe', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Malphite");
+newChamp.releaseDate = new Date(2009, 9, 2);
+newChamp.addAbility("Seismic Shard", 'Q', ['targeted', 'slow', 'move speed buff', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Brutal Strikes", 'W', ['autoattack effect', 'splash damage', 'ad buff', 'armor buff']);
+newChamp.addAbility("Ground Slam", 'E', ['aoe', 'magic damage', 'attack speed debuff', 'armor scaling']);
+newChamp.addAbility("Unstoppable Forge", 'R', ['ultimate', 'skillshot', 'knockup', 'stun', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Corki");
+newChamp.releaseDate = new Date(2009, 9, 19);
+newChamp.addAbility("Phosphorus Bomb", 'Q', ['skillshot', 'reveal', 'aoe', 'magic damamge', 'ap scaling']);
+newChamp.addAbility("Valkyrie", 'W', ['jump', 'aoe', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Gatling Gun", 'E', ['armor reduction', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Missile Barrage", 'R', ['ultimate', 'skillshot', 'aoe', 'splash damage', 'magic damage', 'ad scaling', 'ap scaling']);
+allChampions.push(newChamp);
+
 var newChamp = new Champion("Katarina");
 newChamp.releaseDate = new Date(2009, 9, 19);
 newChamp.addAbility("Bouncing Blade", 'Q', ['targeted', 'bounce', 'magic damage', 'ad scaling', 'ap scaling']);
@@ -264,8 +307,37 @@ newChamp.addAbility("Shunpo", 'E', ['targeted', 'flash', 'magic damage', 'ap sca
 newChamp.addAbility("Death Lotus", 'R', ['ultimate', 'channel', 'multiple targets', 'ap scaling', 'ad scaling', 'magic damage']);
 allChampions.push(newChamp);
 
+var newChamp = new Champion("Nasus");
+newChamp.releaseDate = new Date(2009, 10, 1);
+newChamp.addAbility("Siphoning Strike", 'Q', ['autoattack effect', 'permanent gain', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Wither", 'W', ['slow', 'attack speed debuff', 'targeted']);
+newChamp.addAbility("Spirit Fire", 'E', ['aoe', 'damage over time', 'armor reduction', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Fury of the Sands", 'R', ['ultimate', 'hp buff', 'drain', 'aoe', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
 
+var newChamp = new Champion("Heimerdinger");
+newChamp.releaseDate = new Date(2009, 10, 10);
+newChamp.addAbility("H-28G Evolution Turret", 'Q', ['placement', 'armor debuff', 'mr debuff', 'splash damage', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Hextech Microrockets", 'W', ['auto-targeted', 'magic damamge', 'ap scaling']);
+newChamp.addAbility("CH-1 Concussion Grenade", 'E', ['skillshot', 'aoe', 'blind', 'stun', 'structure', 'magic damage', 'ap scaling']);
+newChamp.addAbility("UPGRADE!!!", 'R', ['ultimate', 'cdr', 'ability buff']);
+allChampions.push(newChamp);
 
+var newChamp = new Champion("Shaco");
+newChamp.releaseDate = new Date(2009, 10, 10);
+newChamp.addAbility("Deceive", 'Q', ['flash', 'invisible', 'autoattack effect', 'ad scaling']);
+newChamp.addAbility("Jack in the Box", 'W', ['placement', 'trap', 'fear', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Two-Shiv Poison", 'E', ['slow', 'autoattack effect', 'targeted', 'magic damage', 'ap scaling', 'ad scaling']);
+newChamp.addAbility("Hallucinate", 'R', ['ultimate', 'invisible', 'summon', 'magic damamge', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Udyr");
+newChamp.releaseDate = new Date(2009, 12, 2);
+newChamp.addAbility("Tiger Stance", 'Q', ['autoattack effect', 'attack speed buff', 'damage over time', 'magic damage', 'ad scaling']);
+newChamp.addAbility("Turtle Stance", 'W', ['autoattack effect', 'shield', 'lifesteal', 'restore mana', 'ap scaling']);
+newChamp.addAbility("Bear Stance", 'E', ['autoattack effect', 'move speed buff', 'stun']);
+newChamp.addAbility("Phoenix Stance", 'R', ['aoe', 'autoattack effect', 'ap buff', 'ad buff', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
 
 
 /* new champ tamplate
@@ -275,7 +347,7 @@ newChamp.releaseDate = new Date(, , );
 newChamp.addAbility("", 'Q', ['']);
 newChamp.addAbility("", 'W', ['']);
 newChamp.addAbility("", 'E', ['']);
-newChamp.addAbility("", 'R', ['ultimate']);
+newChamp.addAbility("", 'R', ['ultimate', '']);
 allChampions.push(newChamp);
 
 */
