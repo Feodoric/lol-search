@@ -1,5 +1,3 @@
-// TODO: for now, only give abilities tags
-
 var Ability = function(name, key, tags) {
     this.name = name;
     this.key = key;
@@ -15,6 +13,7 @@ var Champion = function(name) {
 }
 
 // TODO: does JS support function overloading??
+// TODO: add scaling ratio properties
 Champion.prototype.addAbility = function(name, key, tags) {
     var ability = new Ability(name, key, tags);
     this.abilities.push(ability);
@@ -38,4 +37,7 @@ Champion.prototype.updateSearchString = function() {
     }
 }
 
-
+var ChampionMatch = function(champion, matchedAbilities) {
+    this.champion = champion;
+    this.matchedAbilities = matchedAbilities;
+}
