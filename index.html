@@ -46,6 +46,10 @@
             display: none;
         }
 
+        div.champion-container.no-match {
+            display: none;
+        }
+
         div.champion-container div.ability {
             margin-right: 1em;
             float: left;
@@ -55,15 +59,6 @@
             background: Gold;
             font-weight: bold;
         }
-/*
-        div.no-match {
-            display: none;
-        }
-
-        div.match {
-            display: block;
-        }
-*/
     </style>
 
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -81,7 +76,7 @@
             jQuery('#champion-list > div.champion-container:last').append('<h3>' + champion.name + '</h3>');
 
             for(var a in champion.abilities) {
-                jQuery('#champion-list > div.champion-container:last').append('<div class="ability key-' + champion.abilities[a].key + '">' + champion.abilities[a].key.toUpperCase() + ' &ndash; ' + champion.abilities[a].name + '</div>');
+                jQuery('#champion-list > div.champion-container:last').append('<div id="' + champion.abilities[a].id + '" class="ability key-' + champion.abilities[a].key + '">' + champion.abilities[a].key.toUpperCase() + ' &ndash; ' + champion.abilities[a].name + '</div>');
             }
         }
 
@@ -91,24 +86,25 @@
             }
         }
 
-        function updateSearchResults(matchedChampions, missedChampions) {
+        // TODO: rewrite this function to sort the matches based on TBD scoring algorithm
+        function updateSearchResults(championsMatched, championsMissed) {
             // hide all non-matching champions first
-            for(var c in missedChampions) {
-                jQuery('#' + missedChampions[c].id).removeClass('match').addClass('no-match').hide();
-                jQuery('#' + missedChampions[c].id + ' div.ability').removeClass('match');
+            for(var c in championsMissed) {
+                jQuery('#' + championsMissed[c].id).removeClass('match').addClass('no-match').hide();
+                jQuery('#' + championsMissed[c].id + ' div.ability').removeClass('match');
             }
 
             var champ = null;
             var abilities = null;
 
             // show all matching champions second
-            for(var m in matchedChampions) {
-                champ = matchedChampions[m].champion;
-                abilities = matchedChampions[m].matchedAbilities;
+            for(var m in championsMatched) {
+                champ = championsMatched[m].champion;
+                abilities = championsMatched[m].matchedAbilities;
 
                 jQuery('#' + champ.id).removeClass('no-match').addClass('match').show();
                 for(var a in abilities) {
-                    jQuery('#' + champ.id + ' div.key-' + abilities[a].key.toUpperCase()).addClass('match');
+                    jQuery('#' + abilities[a].id).addClass('match');
                 }
             }
         }
@@ -118,42 +114,56 @@
 
             jQuery('#query').bind('keyup', function(event) {
                 if(jQuery(this).val().length >= QUERY_MIN_LENGTH) {
-                console.log(jQuery(this).val());
-                console.log(jQuery(this).val().length);
+                    //console.log(jQuery(this).val());
+                    //console.log(jQuery(this).val().length);
+
                     var term = jQuery(this).val().toLowerCase();
-                    var match = null;
-                    var matches = [];
-                    var misses = [];
+                    var champ = null;
+                    var ability = null;
+                    var abilityMatch = false;
+                    var tagMatch = false;
 
                     for(var c in allChampions) {
+                        champ = allChampions[c];
+
                         if(allChampions[c].searchString.indexOf(term) != -1) {
-                            match = new ChampionMatch(allChampions[c], []);
+                            abilityMatch = false;
 
                             // TODO: do a more thorough search of the champs attributes
-                            for(var a in allChampions[c].abilities) {
-                                for(var t in allChampions[c].abilities[a].tags) {
-                                        if(allChampions[c].abilities[a].tags[t].indexOf(term) != -1) {
-                                            match.matchedAbilities.push(allChampions[c].abilities[a]);
+                            for(var a in champ.abilities) {
+                                ability = champ.abilities[a];
+                                tagMatch = false;
+
+                                for(var t in ability.tags) {
+                                        if(ability.tags[t].indexOf(term) != -1) {
+                                            jQuery('#' + champ.id).removeClass('no-match').addClass('match');
+                                            jQuery('#' + ability.id).addClass('match');
+
+                                            tagMatch = true;
+                                            abilityMatch = true;
                                         }
+                                }
+
+                                if(!tagMatch) {
+                                    jQuery('#' + champ.id + ability.id)
+                                        .removeClass('match')
+                                        .addClass('no-match');
                                 }
                             }
 
-                            // If none of the abilties' tags matched the query, move on to the next ability
-                            // This is so we don't include "matches" where the ability's name is a match
-                            if(match.matchedAbilities.length == 0) {
-                                misses.push(allChampions[c]);
-                                continue;
+                            if(!abilityMatch) {
+                                jQuery('#' + champ.id).removeClass('match').addClass('no-match');
                             }
-
-                            matches.push(match);
                         } else {
-                            misses.push(allChampions[c]);
+                                jQuery('#' + champ.id).removeClass('match').addClass('no-match');
+                                jQuery('#' + champ.id + ' div.ability').removeClass('match');
                         }
                     }
-                    updateSearchResults(matches, misses);
-                } else if (jQuery(this).val().length == 0) {
-                    jQuery('#champion-list div.champion-container').removeClass('match').removeClass('no-match').show();
-                    jQuery('#champion-list div.ability').removeClass('match');
+                } else {
+                    // If the querystring is shorter than our minimum length, then mark all champions and abilities as not matches
+                    jQuery('#champion-list div.champion-container.match').removeClass('match');
+                    jQuery('#champion-list div.champion-container.no-match').removeClass('no-match');
+                    jQuery('#champion-list div.ability.match').removeClass('match');
                 }
             });
 

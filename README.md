@@ -3,8 +3,21 @@ LoL Search is a simple web app for filtering League of Legends champions based o
 
 
 # TODO (in no particular order)
+* make the Ability class more robust to include ranges, cooldowns, costs, scaling ratios, etc
+* should we split abilities that have passives and actives into separate objects? This might make fore better UI
+* make the Champion class more robust to include the champion's starting and per-level stats
 * give champions tags (e.g. 'tank', 'support', 'pusher', etc)
-* include each champion's "Innate" ability
+* improve the filtering engine
+    * search champion tags!
+    * update the matching and/or highlighting logic to efficiently dehighlight abilities that no longer match the current querystring
+    * create dictionary for translating common terms
+        * think about relationship between "aura" and "aoe" abilites and whether it makes sense to treat them the same 
+        * all stats should have a unified taxonomy: hp, ma, ad, ap, ac, mr, ls, ch, hpr, mar, rp, and so on
+        * decide on a term for jump/leap/dash/roll/charge (jax, graves, vayne, shen, pantheon, sejuani, shyvanna(ult), corki, etc)
+    * explode the querystring for matching against multiple parts of the querystring rather than treating it as atomic (this would allow a query to match multiple abilities for a single champion)
+    * use multiple matching functionality to give matches a score
+    * sort results based on their match score
+    * if someone searches "buff" do *not* match "debuff" -- solution: use a different tag than "debuff" and translate "debuff"->[NEW_TERM] in dictionary
 * ENTER ALL THE CHAMPIONS
 * develop a better UI and visual style
     * show more info on abilities, namely range and scaling ratios
@@ -24,10 +37,5 @@ LoL Search is a simple web app for filtering League of Legends champions based o
     * gg to jump to the top of the list
     * G to jump to the end of the list
     * :[number] to jump to matching champion N
-* make the Ability class more robust to include ranges, cooldowns, costs, scaling ratios, etc
-* make the Champion class more robust to include the champion's starting and per-level stats
-* improve the filtering engine
-    * create dictionary for translating common terms
-    * explode the querystring for matching against multiple parts of the querystring rather than treating it as atomic
-    * use multiple matching functionality to give matches a score
-    * sort results based on their match score
+    * x to clear the search
+* consider loading minimal data in JS with the page and serving complete champ/ability specs via ajax during the search?
