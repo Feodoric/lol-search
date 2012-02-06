@@ -495,7 +495,7 @@ newChamp.tags = ['ad carry', 'ranged', 'ranged dps'];
 newChamp.addAbility("Icathian Surprise", 'I', ['innate', 'move speed buff', 'true damage', 'aoe', 'after death']);
 newChamp.addAbility("Caustic Spittle", 'Q', ['passive', 'attack speed bonus', 'targeted', 'armor debuff', 'mr debuff', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Bio-Arcane Barrage", 'W', ['autoattack buff', 'attack range', 'autoattack effect', 'magic damage', 'max hp scaling', 'ap scaling']);
-newChamp.addAbility("Void Oooze", 'E', ['skillshot', 'slow', 'aoe'. 'passthrough']);
+newChamp.addAbility("Void Oooze", 'E', ['skillshot', 'slow', 'aoe', 'passthrough']);
 newChamp.addAbility("Living Artillery", 'R', ['ultimate', 'skillshot', 'aoe', 'delay', 'ad scaling', 'ap scaling']);
 allChampions.push(newChamp);
 
