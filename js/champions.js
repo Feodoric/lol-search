@@ -33,7 +33,7 @@ newChamp.addAbility("Focus", 'I', ['innate', 'critical strike chance', 'autoatta
 newChamp.addAbility("Frost Shot", 'Q', ['toggle', 'autoattack effect', 'slow']);
 newChamp.addAbility("Volley", 'W', ['cone', 'slow', 'ad scaling',  'physical damage']);
 newChamp.addAbility("Hawkshot", 'E', ['passive', 'gold per kill', 'reveal']);
-newChamp.addAbility("Enchanted Crystal Arrow", 'R', ['skillshot', 'long range', 'stun', 'aoe', 'slow', 'allChampions only', 'magic damage', 'ultimate', 'global', 'long range']);
+newChamp.addAbility("Enchanted Crystal Arrow", 'R', ['skillshot', 'stun', 'aoe', 'slow', 'allChampions only', 'magic damage', 'ultimate', 'global', 'long range']);
 allChampions.push(newChamp);
 
 var newChamp = new Champion("Fiddlesticks", new Date(2009, 2, 21));
@@ -238,7 +238,7 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Anivia", new Date(2009, 7, 10));
 newChamp.tags = ['mage', 'ranged'];
-newChamp.addAbility("Rebirth", 'I', ['innate', 'transformation', 'upon dying', 'mr', 'armor', 'resurrection']);
+newChamp.addAbility("Rebirth", 'I', ['innate', 'transform', 'upon dying', 'mr', 'armor', 'resurrection']);
 newChamp.addAbility("Flash Frost", 'Q', ['skillshot', 'stun', 'aoe', 'chilled', 'magic damage', 'ap scaling', 'triggered']);
 newChamp.addAbility("Crystalize", 'W', ['terrain']);
 newChamp.addAbility("Frostbite", 'E', ['tageted', 'chilled', 'magic damage', 'ap scaling']);
@@ -450,7 +450,7 @@ newChamp.tags = ['mage', 'ranged', 'ninja', 'energy'];
 newChamp.addAbility("Mark of the Storm", 'I', ['innate', 'mark', 'stun', 'spell triggered', 'energy']);
 newChamp.addAbility("Thundering Shuriken", 'Q', ['skillshot', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Electrical Surge", 'W', ['passive', 'ad scaling', 'multiple targets', 'magic damage', 'ap scaling']);
-newChamp.addAbility("Lightning Rush", 'E', ['move speed buff', 'transformation', 'collision detection', 'energy', 'magic damage', 'armor buff', 'mr buff', 'ap scaling']);
+newChamp.addAbility("Lightning Rush", 'E', ['move speed buff', 'transform', 'collision detection', 'energy', 'magic damage', 'armor buff', 'mr buff', 'ap scaling']);
 newChamp.addAbility("Slicing Maelstrom", 'R', ['ultimate', 'aoe', 'magic damage', 'ap scaling']);
 allChampions.push(newChamp);
 
@@ -471,6 +471,82 @@ newChamp.addAbility("Twilight Shroud", 'W', ['invisible', 'aoe', 'armor buff', '
 newChamp.addAbility("Crescent Slash", 'E', ['aoe', 'physical damage', 'ad scaling', 'ap scaling']);
 newChamp.addAbility("Shadow Dance", 'R', ['ultimate', 'targeted', 'blink', 'kill', 'assist', 'magic damage', 'ap scaling']);
 allChampions.push(newChamp);
+
+var newChamp = new Champion("Malzahar", new Date(2010, 6, 1));
+newChamp.tags = ['mage', 'ranged'];
+newChamp.addAbility("Summon Voidling", 'I', ['innate', 'summon', 'spell trigger', 'ad scaling', 'level scaling']);
+newChamp.addAbility("Call of the Void", 'Q', ['aoe', 'silence', 'delay', 'maigic damage', 'ap scaling']);
+newChamp.addAbility("Null Zone", 'W', ['aoe', 'magic damage', 'ap scaling', 'max hp']);
+newChamp.addAbility("Malific Vision", 'E', ['damage over time', 'restore mana', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Nether Grasp", 'R', ['ultimate', 'channel', 'suppress', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Olaf", new Date(2010, 6, 9));
+newChamp.tags = ['melee', 'melee dps', 'fighter'];
+newChamp.addAbility("Berseker Rage", 'I', ['innate', 'missing hp missing', 'attack speed bonus']);
+newChamp.addAbility("Undertow", 'Q', ['skillshot', 'passthrough', 'slow', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Vicious Strikes", 'W', ['ad buff', 'life steal', 'spell vamp', 'autoattack buff', 'missing hp scaling']);
+newChamp.addAbility("Reckless Swing", 'E', ['true damage', 'autoattack buff']);
+newChamp.addAbility("Ragnarok", 'R', ['ultimate', 'passive', 'armor penetration bonus', 'remove cc', 'disable immune', 'reduce damage']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Kog'Maw", new Date(2010, 6, 24));
+newChamp.tags = ['ad carry', 'ranged', 'ranged dps'];
+newChamp.addAbility("Icathian Surprise", 'I', ['innate', 'move speed buff', 'true damage', 'aoe', 'after death']);
+newChamp.addAbility("Caustic Spittle", 'Q', ['passive', 'attack speed bonus', 'targeted', 'armor debuff', 'mr debuff', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Bio-Arcane Barrage", 'W', ['autoattack buff', 'attack range', 'autoattack effect', 'magic damage', 'max hp scaling', 'ap scaling']);
+newChamp.addAbility("Void Oooze", 'E', ['skillshot', 'slow', 'aoe'. 'passthrough']);
+newChamp.addAbility("Living Artillery", 'R', ['ultimate', 'skillshot', 'aoe', 'delay', 'ad scaling', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Xin Zhao", new Date(2010, 7, 13));
+newChamp.tags = ['fighter', 'melee', 'melee dps'];
+newChamp.addAbility("Tireless Warrior", 'I', ['innate', 'lifesteal', 'autoattack effect', 'level scaling']);
+newChamp.addAbility("Three Talon Strike", 'Q', ['autoattack buff', 'knockup', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Battle Cry", 'W', ['passive', 'attack speed bonus', 'cdr', 'autoattack effect']);
+newChamp.addAbility("Audacious Charge", 'E', ['targeted', 'slow', 'aoe', 'jump', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Crescent Sweep", 'R', ['ultimate', 'aoe', 'multiple targets', 'current hp scaling', 'armor buff', 'mr buff']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Vladimir", new Date(2010, 7, 27));
+newChamp.tags = ['mage', 'fighter', 'ranged', 'sustain'];
+newChamp.addAbility("Crimson Pact", 'I', ['innate', 'bonus hp', 'bonus ap', 'ap scaling', 'hp scaling']);
+newChamp.addAbility("Transfusion", 'Q', ['drain', 'targeted', 'no cost', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Sanguine Pool", 'W', ['transform', 'untargetable', 'aoe', 'slow', 'heal', 'magic damage', 'hp scaling']);
+newChamp.addAbility("Tides of Blood", 'E', ['aoe', 'stacks', 'spell buff', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Hemoplague", 'R', ['ultimate', 'aoe', 'increased damage', 'delayed', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Gallio", new Date(2010, 8, 10));
+newChamp.tags = ['tank', 'melee', 'support'];
+newChamp.addAbility("Runic Skin", 'I', ['innate', 'bonus ap', 'mr scaling']);
+newChamp.addAbility("Resolute Smite", 'Q', ['skillshot', 'aoe', 'slow', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Bulwark", 'W', ['shield', 'targeted', 'armor buff', 'mr buff', 'heal', 'ap scaling']);
+newChamp.addAbility("Righteous Gust", 'E', ['skillshot', 'passthrough', 'aoe', 'move speed buff', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Idol of Durand", 'R', ['ultimate', 'channel', 'taunt', 'aoe', 'reduced damage', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Urgot", new Date(2010, 8, 24));
+newChamp.tags = ['fighter', 'ranged', 'ranged dps'];
+newChamp.addAbility("Zaun-Touched Bolt Augmenter", 'I', ['innate', 'autoattack effect', 'spell bonus', 'reduce damage dealt']);
+newChamp.addAbility("Acid Hunter", 'Q', ['skillshot', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Terror Capacitor", 'W', ['shield', 'spell buff', 'slow', 'ap scaling']);
+newChamp.addAbility("Noxian Corrosive Charge", 'E', ['skillshot', 'aoe', 'damage over time', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Hyper-Kinetic Position Reverser", 'R', ['ultimate', 'targeted', 'suppress', 'channel', 'teleport', 'slow', 'armor buff', 'mr buff']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Miss fortune", new Date(2010, 9, 8));
+newChamp.tags = ['ranged', 'ranged dps', 'pirate', 'ad carry'];
+newChamp.addAbility("Strut", 'I', ['innate', 'move speed buff', 'taes no damage']);
+newChamp.addAbility("Double Up", 'Q', ['targeted', 'bounce', 'pysical damage', 'on hit effects', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Impure Shots", 'W', ['passive', 'stacks', 'attack speed buff', 'lower healing', 'lower hp regen', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Make it Rain", 'E', ['aoe', 'delay', 'slow', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Bullet Time", 'R', ['ultimate', 'channel', 'cone', 'magic damage', 'ad scaling', 'ap scaling']);
+allChampions.push(newChamp);
+
+
+
+
 
 
 
