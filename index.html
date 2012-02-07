@@ -126,8 +126,17 @@
                     for(var c in allChampions) {
                         champ = allChampions[c];
 
+                        // TODO: encapsulate search logic in a function belonging to the Champion class
                         if(allChampions[c].searchString.indexOf(term) != -1) {
                             abilityMatch = false;
+
+/*
+                            for(var t in champ.tags) {
+                                if(champ.tags[t].indexOf(term) != -1) {
+                                    tagMatch = true;
+                                }
+                            }
+*/
 
                             // TODO: do a more thorough search of the champs attributes
                             for(var a in champ.abilities) {

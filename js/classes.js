@@ -18,26 +18,22 @@ var Champion = function(name, releaseDate) {
     }
 }
 
-// TODO: does JS support function overloading??
 Champion.prototype.addAbility = function(name, key, tags) {
     var ability = new Ability(name, key, tags);
     this.abilities.push(ability);
-
-    // TODO: it's inefficient to rebuild this string *every time* we add a new ability
-    this.updateSearchString();
 }
 
 Champion.prototype.updateSearchString = function() {
-    this.searchString = this.name.toLowerCase();
+    this.searchString = this.name;
+    this.searchString = this.searchString + ' ' + this.tags.join(' ');
 
-
-    for(var i = 0; i < this.abilities.length; i++) {
-        this.searchString = this.searchString + ' ' + this.abilities[i].name.toLowerCase();
-
-        for(var j = 0; j < this.abilities[i].tags.length; j++) {
-            this.searchString = this.searchString + ' ' + this.abilities[i].tags[j].toLowerCase();
-        }
+    for(var a in this.abilities) {
+        // TODO: continue to include ability name in the search string?
+        this.searchString = this.searchString + ' ' + this.abilities[a].name;
+        this.searchString = this.searchString + ' ' + this.abilities[a].tags.join(' ');
     }
+
+    this.searchString = this.searchString.toLowerCase();
 }
 
 var AbilityMatch = function(champion, matchedAbilities) {

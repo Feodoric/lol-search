@@ -4,9 +4,9 @@ LoL Search is a simple web app for filtering League of Legends champions based o
 
 # TODO (in no particular order)
 * make the Ability class more robust to include ranges, cooldowns, costs, scaling ratios, etc
-* should we split abilities that have passives and actives into separate objects? This might make fore better UI
+* split abilities that have passives and actives into separate objects. This would make search results more clear and allow users to search on "passive doesn't take effect while the active is on cooldown" (should probably come up with a shorter term, though)
 * make the Champion class more robust to include the champion's starting and per-level stats
-* give champions tags (e.g. 'tank', 'support', 'pusher', etc)
+* -give champions tags (e.g. 'tank', 'support', 'pusher', etc)-
 * improve the filtering engine
     * search champion tags!
     * update the matching and/or highlighting logic to efficiently dehighlight abilities that no longer match the current querystring
@@ -14,9 +14,10 @@ LoL Search is a simple web app for filtering League of Legends champions based o
         * think about relationship between "aura" and "aoe" abilites and whether it makes sense to treat them the same 
         * all stats should have a unified taxonomy: hp, ma, ad, ap, ac, mr, ls, ch, hpr, mar, rp, and so on
         * decide on a term for jump/leap/dash/roll/charge (jax, graves, vayne, shen, pantheon, sejuani, shyvanna(ult), corki, etc)
-    * explode the querystring for matching against multiple parts of the querystring rather than treating it as atomic (this would allow a query to match multiple abilities for a single champion)
-    * use multiple matching functionality to give matches a score
+    * allow users to specify multiple tags in a comma-separated list
+    * use multiple matching functionality to give matches a "relevance" score
     * sort results based on their match score
+    * allow sorting on other attributes like name, release date, starting attributes
     * if someone searches "buff" do *not* match "debuff" -- solution: use a different tag than "debuff" and translate "debuff"->[NEW_TERM] in dictionary
 * ENTER ALL THE CHAMPIONS
 * develop a better UI and visual style
