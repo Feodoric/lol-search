@@ -65,7 +65,7 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Master Yi", new Date(2009, 2, 21));
 newChamp.tags = ['melee dps', 'melee', 'ad carry'];
-newChamp.addAbility("Strike Twice", 'I', ['innate', 'counter', 'autoattack']);
+newChamp.addAbility("Strike Twice", 'I', ['innate', 'counter', 'autoattack', 'attack twice']);
 newChamp.addAbility("Alpha Strike", 'Q', ['targeted', 'multiple targets', 'magic damage', 'ap scaling', 'jump']);
 newChamp.addAbility("Meditate", 'W', ['heal', 'channel', 'armor buff', 'ap scaling', 'mr buff']);
 newChamp.addAbility("Wuju Style", 'E', ['passive', 'ad bonus']);
@@ -372,7 +372,7 @@ newChamp.addAbility("Hallucinate", 'R', ['ultimate', 'invisible', 'summon', 'mag
 allChampions.push(newChamp);
 
 var newChamp = new Champion("Udyr", new Date(2009, 12, 2));
-newChamp.tags = ['jungler', 'fighter', 'melee'];
+newChamp.tags = ['jungler', 'fighter', 'melee', 'stance'];
 newChamp.addAbility("Monkey's Agility", 'I', ['innate', 'attack speed buff', 'stacks', 'spell triggered']);
 newChamp.addAbility("Tiger Stance", 'Q', ['autoattack effect', 'attack speed buff', 'damage over time', 'magic damage', 'ad scaling']);
 newChamp.addAbility("Turtle Stance", 'W', ['autoattack effect', 'shield', 'lifesteal', 'restore mana', 'ap scaling']);
@@ -537,12 +537,96 @@ allChampions.push(newChamp);
 
 var newChamp = new Champion("Miss fortune", new Date(2010, 9, 8));
 newChamp.tags = ['ranged', 'ranged dps', 'pirate', 'ad carry'];
-newChamp.addAbility("Strut", 'I', ['innate', 'move speed buff', 'taes no damage']);
+newChamp.addAbility("Strut", 'I', ['innate', 'move speed buff', 'takes no damage']);
 newChamp.addAbility("Double Up", 'Q', ['targeted', 'bounce', 'pysical damage', 'on hit effects', 'physical damage', 'ad scaling']);
 newChamp.addAbility("Impure Shots", 'W', ['passive', 'stacks', 'attack speed buff', 'lower healing', 'lower hp regen', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Make it Rain", 'E', ['aoe', 'delay', 'slow', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Bullet Time", 'R', ['ultimate', 'channel', 'cone', 'magic damage', 'ad scaling', 'ap scaling']);
 allChampions.push(newChamp);
+
+var newChamp = new Champion("Sona", new Date(2010, 9, 20));
+newChamp.tags = ['support', 'stance', 'ranged', 'mage'];
+newChamp.addAbility("Power Chord", 'I', ['innate', 'counter', 'autoattack effect', 'autoattack buff', 'magic damage', 'level scaling']);
+newChamp.addAbility("Hymn of Valor", 'Q', ['magic damage', 'autotarget', 'multiple targets', 'aura', 'ad bonus', 'ap bonus', 'ap scaling', 'autoattack buff']);
+newChamp.addAbility("Aria of Perseverance", 'W', ['heal', 'aura', 'multiple targets', 'autotarget', 'armor bonus', 'mr bonus', 'ap scaling', 'damage debuff']);
+newChamp.addAbility("Song of Celerity", 'E', ['move speed bonus', 'aura', 'slow']);
+newChamp.addAbility("Crescendo", 'R', ['ultimate', 'stun', 'skillshot', 'aoe', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Lux", new Date(2010, 10, 19));
+newChamp.tags = ['mage', 'ranged', 'support'];
+newChamp.addAbility("Illumination", 'I', ['innate', 'mark', 'magic damage', 'autoattack buff', 'level scaling']);
+newChamp.addAbility("Light binding", 'Q', ['skillshot', 'root', 'magic damage', 'ap scaling', 'multiple targets']);
+newChamp.addAbility("Prismatic Barrier", 'W', ['shield', 'skillshot', 'passthrough', 'ap scaling']);
+newChamp.addAbility("Lucent Singularity", 'E', ['aoe', 'skillshot', 'triggered', 'magic damage', 'ap scaling', 'slow', 'reveal']);
+newChamp.addAbility("Finales Funkeln", 'R', ['ultimate', 'channel', 'skillshot', 'passthrough', 'long range', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("LeBlanc", new Date(2010, 11, 2));
+newChamp.tags = ['mage', 'ranged', 'burst'];
+newChamp.addAbility("Mirror Image", 'I', ['innate', 'low hp', 'suommon', 'invisible', 'level scaling']);
+newChamp.addAbility("Sigil of Silence", 'Q', ['targeted', 'mark', 'silence', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Distortion", 'W', ['dash', 'blink', 'aoe', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Ethereal Chains", 'E', ['skillshot', 'leash', 'slow', 'root', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Mimic", 'R', ['ultimate', 'spell buff', 'spell copy']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Irelia", new Date(2010, 11, 16));
+newChamp.tags = ['melee', 'fighter', 'melee dps'];
+newChamp.addAbility("Ionian Fervor", 'I', ['innate', 'debuff duration', 'debuff reduction']);
+newChamp.addAbility("Bladesurge", 'Q', ['dash', 'targeted', 'on hit effects', 'cdr', 'regain mana', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Hiten Style", 'W', ['passive', 'lifesteal', 'true damage', 'autoattack buff']);
+newChamp.addAbility("Equilibrium Strike", 'E', ['slow', 'targeted', 'stun', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Transcendent Blades", 'R', ['ultimate', 'skillshot', 'passthrough', 'spellvamp', 'physical damage', 'ad scaling', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Trundle", new Date(2010, 12, 1));
+newChamp.tags = ['jungle', 'melee', 'fighter'];
+newChamp.addAbility("Decompose", 'I', ['innate', 'death', 'regain hp', 'max hp']);
+newChamp.addAbility("Rabid Bite", 'Q', ['autoattack buff', 'ad buff', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Contaminate", 'W', ['aoe', 'attack speed buff', 'move speed buff', 'cc reduction']);
+newChamp.addAbility("Pillar of Filth", 'E', ['terrain', 'aoe', 'slow']);
+newChamp.addAbility("Agony", 'R', ['ultimate', 'targeted', 'lifesteal', 'armor buff', 'mr buff', 'armor debuff', 'mr debuff', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Cassiopeia", new Date(2010, 12, 14));
+newChamp.tags = ['mage', 'ranged', 'burst'];
+newChamp.addAbility("Deadly Cadence", 'I', ['innate', 'counter', 'mana cost reduction']);
+newChamp.addAbility("Noxious Blast", 'Q', ['delay', 'aoe', 'skillshot', 'damage over time', 'move speed buff', 'magic damate', 'ap scaling']);
+newChamp.addAbility("Miasma", 'W', ['aoe', 'reveal', 'slow', 'damage over time', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Twin Fang", 'E', ['targeted', 'cdr', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Petrifying Gaze", 'R', ['ultimate', 'cone', 'stun', 'slow', 'magic damage', 'ap scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Caitlyn", new Date(2011, 1, 4));
+newChamp.tags = ['ranged', 'ranged dps', 'ad carry'];
+newChamp.addAbility("Headshot", 'I', ['innate', 'counter', 'autoattack buff']);
+newChamp.addAbility("Piltover Peacemaker", 'Q', ['channel', 'skillshot', 'passthrough', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Yordle Snap Trap", 'W', ['trap', 'placement', 'root', 'reveal', 'magic damage', 'ap scaling']);
+newChamp.addAbility("90 Caliber Net", 'E', ['skillshot', 'knockback', 'slow', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Ace in the Hole", 'R', ['ultimate', 'channel', 'targeted', 'reveal', 'long range', 'physical damage', 'ad scaling']);
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Renekton", new Date(2011, 1, 17));
+newChamp.tags = ['fighter', 'melee', 'fury', 'no mana'];
+newChamp.addAbility("Fury of the Sands", 'I', ['innate', 'current hp', 'fury']);
+newChamp.addAbility("Cull the Meek", 'Q', ['aoe', 'heal', 'fury', 'physical damage', 'ad scaling']);
+newChamp.addAbility("Ruthless Predator", 'W', ['autoattack buff', 'attack twice', 'stun', 'phiscal damage', 'ad scaling', 'fury']);
+newChamp.addAbility("Slice and Dice", 'E', ['dash', 'passthrough', 'armor debuff', 'physical damage', 'ad scaling', 'fury']);
+newChamp.addAbility("Dominus", 'R', ['ultimate', 'size buff', 'hp buff', 'fury', 'aoe', 'magic damage', 'ap scaling');
+allChampions.push(newChamp);
+
+var newChamp = new Champion("Karma", new Date(2011, 2, 1));
+newChamp.tags = ['support', 'mage', 'ranged'];
+newChamp.addAbility("Inner Flame", 'I', ['innate', 'bonus ap', 'missing health scaling']);
+newChamp.addAbility("Heavenly Wage", 'Q', ['cone', 'magic damage', 'heal', 'ap scaling']);
+newChamp.addAbility("Spirit Bond", 'W', ['targeted', 'leash', 'move speed buff', 'slow', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Soul Shield", 'E', ['shield', 'targeted', 'aoe', 'magic damage', 'ap scaling']);
+newChamp.addAbility("Mantra", 'R', ['ultimate', 'spell buff']);
+allChampions.push(newChamp);
+
+
+
 
 
 
