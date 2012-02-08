@@ -4,7 +4,7 @@ var Ability = function(name, key, tags) {
     this.id = this.name.toLowerCase().replace(/[^a-z]/gi, '');
     this.key = key;
     this.tags = tags;
-}
+};
 
 var Champion = function(name, releaseDate) {
     this.name = name;
@@ -18,12 +18,12 @@ var Champion = function(name, releaseDate) {
     if(typeof releaseDate === 'date') {
         this.releaseDate = releaseDate;
     }
-}
+};
 
 Champion.prototype.addAbility = function(name, key, tags) {
     var ability = new Ability(name, key, tags);
     this.abilities.push(ability);
-}
+};
 
 Champion.prototype.updateSearchString = function() {
     this.searchString = this.name;
@@ -38,7 +38,7 @@ Champion.prototype.updateSearchString = function() {
     this.searchString = this.searchString.toLowerCase();
     // TODO: put this regular expression in a variable somewhere
     this.searchString = this.searchString.replace(/[^a-zA-Z0-9]+/g, '');
-}
+};
 
 Champion.prototype.getSearchMatchScore = function(searchTerms) {
     var score = 0.0;
@@ -98,7 +98,7 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
     }
 
     return score;
-}
+};
 
 Champion.prototype.getMatchingAbilities = function(searchTerms) {
     var matchingAbilities = new Array();
@@ -137,17 +137,17 @@ Champion.prototype.getMatchingAbilities = function(searchTerms) {
 
     // TODO: ensure that matchingAbilities contains no duplicates
     return matchingAbilities;
-}
+};
 
 // STATIC FUNCTION for sending to Array.sort()
 Champion.prototype.sortByName = function(leftChamp, rightChamp) {
     return leftChamp.name.localeCompare(rightChampe.name);
-}
+};
 
 // STATIC FUNCTION for sending to Array.sort()
 Champion.prototype.sortByReleaseDate = function(leftChamp, rightChamp) {
     return leftChamp.releaseDate.getTime() - rightChamp.releaseDate.getTime();
-}
+};
 
 
 
@@ -155,7 +155,7 @@ var ChampionMatch = function(champion, searchScore, matchedAbilities) {
     this.champion = champion;
     this.searchScore = searchScore;
     this.matchedAbilities = matchedAbilities;
-}
+};
 
 // STATIC FUNCTION for sending to Array.sort()
 ChampionMatch.prototype.compareMatches = function(leftMatch, rightMatch) {
@@ -164,4 +164,4 @@ ChampionMatch.prototype.compareMatches = function(leftMatch, rightMatch) {
     }
 
     return rightMatch.searchScore - leftMatch.searchScore;
-}
+};
