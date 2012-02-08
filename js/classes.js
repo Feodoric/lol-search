@@ -66,7 +66,7 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
         }
         */
 
-        /* TODO: figure out the UI for searching by champion tags
+        // TODO: figure out the UI for searching by champion tags
         for(var t in this.tags) {
             tag = this.tags[t];
 
@@ -74,7 +74,6 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
                 score += 1.0;
             }
         }
-        */
 
         var ability = null;
         var matchIndex = -1;
