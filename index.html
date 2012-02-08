@@ -109,6 +109,10 @@
             }
         }
 
+        // TODO: write a function that will reorder the list of champions by name, date, sortscore, etc
+        // it might be faster to just create a new array of champs are re-add them to the page
+        // this would require a full reset of the list on every keyup =/
+
         jQuery(document).ready(function() {
             championListInit(allChampions);
 
@@ -126,17 +130,11 @@
                     for(var c in allChampions) {
                         champ = allChampions[c];
 
-                        // TODO: encapsulate search logic in a function belonging to the Champion class
+                        // TODO: call getSearchMatchScore() in this loop
+                        // TODO: write, then call here, a function to get the types of matches from a given champ for given terms
                         if(allChampions[c].searchString.indexOf(term) != -1) {
                             abilityMatch = false;
 
-/*
-                            for(var t in champ.tags) {
-                                if(champ.tags[t].indexOf(term) != -1) {
-                                    tagMatch = true;
-                                }
-                            }
-*/
 
                             // TODO: do a more thorough search of the champs attributes
                             for(var a in champ.abilities) {
