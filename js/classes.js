@@ -10,19 +10,34 @@ var Champion = function(name, releaseDate) {
     this.name = name;
     // TODO: put this regular expression in a variable
     this.id = this.name.toLowerCase().replace(/[^a-z]/gi, '');
-    this.releaseDate = new Date(0);
-    this.abilities = [];
+    this.releaseDate = releaseDate;
+    this.abilities = {};
     this.searchString = this.name;
     this.tags = [];
+};
 
-    if(typeof releaseDate === 'date') {
-        this.releaseDate = releaseDate;
+Champion.prototype.jsonify = function() {
+    var obj = {};
+    obj[this.name] = {
+        release: this.releaseDate,
+        tags: this.tags
+    };
+
+    for (var ability in this.abilities){
+        if (this.abilities.hasOwnProperty(ability)){
+            obj[this.name][ability] = {
+                name: this.abilities[ability].name,
+                tags: this.abilities[ability].tags
+            };
+        }
     }
+
+    return JSON.stringify(obj);
 };
 
 Champion.prototype.addAbility = function(name, key, tags) {
     var ability = new Ability(name, key, tags);
-    this.abilities.push(ability);
+    this.abilities[key] = ability;
 };
 
 Champion.prototype.updateSearchString = function() {
