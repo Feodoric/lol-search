@@ -6,18 +6,18 @@ LoL Search is a simple web app for filtering League of Legends champions based o
 * make the Ability class more robust to include ranges, cooldowns, costs, scaling ratios, etc
 * split abilities that have passives and actives into separate objects. This would make search results more clear and allow users to search on "passive doesn't take effect while the active is on cooldown" (should probably come up with a shorter term, though)
 * make the Champion class more robust to include the champion's starting and per-level stats
-* -give champions tags (e.g. 'tank', 'support', 'pusher', etc)-
+X give champions tags (e.g. 'tank', 'support', 'pusher', etc)
 * improve the filtering engine
     * search champion tags!
-    * update the matching and/or highlighting logic to efficiently dehighlight abilities that no longer match the current querystring
+    X update the matching and/or highlighting logic to efficiently dehighlight abilities that no longer match the current querystring
     * create dictionary for translating common terms
         * think about relationship between "aura" and "aoe" abilites and whether it makes sense to treat them the same 
         * all stats should have a unified taxonomy: hp, ma, ad, ap, ac, mr, ls, ch, hpr, mar, rp, and so on
         * decide on a term for jump/leap/dash/roll/charge (jax, graves, vayne, shen, pantheon, sejuani, shyvanna(ult), corki, etc)
-    * allow users to specify multiple tags in a comma-separated list
-    * use multiple matching functionality to give matches a "relevance" score
-    * sort results based on their match score
-    * allow sorting on other attributes like name, release date, starting attributes
+    X allow users to specify multiple tags in a comma-separated list
+    X use multiple matching functionality to give matches a "relevance" score
+    X sort results based on their match score
+    X allow sorting on other attributes like name, release date, starting attributes
     * if someone searches "buff" do *not* match "debuff" -- solution: use a different tag than "debuff" and translate "debuff"->[NEW_TERM] in dictionary
 * ENTER ALL THE CHAMPIONS
 * develop a better UI and visual style

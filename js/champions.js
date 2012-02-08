@@ -419,6 +419,7 @@ newChamp.addAbility("Turtle Stance", 'W', ['autoattack effect', 'shield', 'lifes
 newChamp.addAbility("Bear Stance", 'E', ['autoattack effect', 'move speed buff', 'stun']);
 newChamp.addAbility("Phoenix Stance", 'R', ['aoe', 'autoattack effect', 'ap buff', 'ad buff', 'magic damage', 'ap scaling']);
 
+/*
 var newChamp = new Champion("Nidalee", new Date(2009, 12, 9));
 newChamp.tags = ['pusher', 'support'];
 newChamp.addAbility("Prowl", 'I', ['innate', 'move speed buff']);
@@ -431,6 +432,7 @@ newChamp.addAbility("Swipe", 'E', ['cone', 'magic damage', 'ap scaling']);
 newChamp.addAbility("Aspect of the cougar", 'R', ['ultimate', 'transform', 'bonus armor', 'bonus mr', 'bonus move speed']);
 newChamp.updateSearchString();
 allChampions.push(newChamp);
+*/
 
 var newChamp = new Champion("Poppy", new Date(2010, 1, 13));
 newChamp.tags = ['assassin', 'melee', 'fighter', 'yordle'];
@@ -722,6 +724,7 @@ newChamp.addAbility("Paranoia", 'R', ['ultimate', 'vision debuff', 'ally vision'
 newChamp.updateSearchString();
 allChampions.push(newChamp);
 
+/*
 var newChamp = new Champion("Lee Sin", new Date(2011, 4, 1));
 newChamp.tags = ['melee', 'jungle', 'melee dps', 'fighter', 'energy', 'no mana'];
 newChamp.addAbility("Flurry", 'I', ['innate', 'spell triggered', 'autoattack buff', 'attack speed buff', 'restore energy']);
@@ -734,6 +737,7 @@ newChamp.addAbility("Cripple", 'E', ['aoe', 'slow', 'attack speed debuff']);
 newChamp.addAbility("Dragon's Rage", 'R', ['ultimate', 'targeted', 'knockback', 'knockup', 'physical damage', 'ad scaling']);
 newChamp.updateSearchString();
 allChampions.push(newChamp);
+*/
 
 var newChamp = new Champion("Brand", new Date(2011, 4, 12));
 newChamp.tags = ['mage', 'ranged'];

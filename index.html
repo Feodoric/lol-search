@@ -67,8 +67,9 @@
     <script type="text/javascript">
         jQuery.noConflict();
 
-        //console.debug(allChampions);
         var QUERY_MIN_LENGTH = 3;
+        // search matches must have a score of at least 0.5 to be displayd in search results
+        var DISPLAY_THRESHOLD_MIN_SCORE = 0.5;
 
         function championEntryAdd(champion) {
             // TODO: look into jquery templates
@@ -80,7 +81,9 @@
             }
         }
 
-        function championListInit(champions) {
+        function championListSet(champions) {
+            jQuery('#champion-list').empty();
+
             for(var c in champions) {
                 championEntryAdd(champions[c]);
             }
@@ -109,63 +112,78 @@
             }
         }
 
-        // TODO: write a function that will reorder the list of champions by name, date, sortscore, etc
-        // it might be faster to just create a new array of champs are re-add them to the page
-        // this would require a full reset of the list on every keyup =/
+        function getSearchTerms(queryString, minTermLength) {
+            var rawTerms = queryString.toLowerCase().split(',');
+            var searchTerms = new Array();
+            var cleanTeam = '';
+
+            for(var t in rawTerms) {
+                cleanTerm = rawTerms[t].replace(/[^a-zA-Z0-9]+/, '');
+                if(cleanTerm.length >= minTermLength) {
+                    searchTerms.push(cleanTerm);
+                }
+            }
+
+            return searchTerms;
+        }
+
+        function performSearch(queryString, champions, minTermLength, displayThreshold) {
+
+            var searchTerms = getSearchTerms(queryString, minTermLength);
+            var champ = null;
+            var score = 0.0;
+            var championMatches = new Array();
+            var matchingAbilities = null;
+
+            for(var c in champions) {
+                champ = champions[c];
+                score = champ.getSearchMatchScore(searchTerms);
+                matchingAbilities = champ.getMatchingAbilities(searchTerms);
+                championMatches.push(new ChampionMatch(champ, score, matchingAbilities));
+            }
+
+            // TODO: be able to access the ChampionMatch.compareMatches() function instead of copy/pasting it here
+            var sortedMatches = championMatches.sort(function(leftMatch, rightMatch) {
+                if(leftMatch.searchScore === rightMatch.searchScore) {
+                    return leftMatch.champion.name.localeCompare(rightMatch.champion.name);
+                }
+
+                return rightMatch.searchScore - leftMatch.searchScore;
+            });
+
+            var sortedChampions = new Array();
+
+            for(var m in sortedMatches) {
+                sortedChampions.push(sortedMatches[m].champion);
+            }
+
+            championListSet(sortedChampions);
+
+            for(var m in sortedMatches) {
+                champ = sortedMatches[m].champion;
+                matchedAbilities = sortedMatches[m].matchedAbilities;
+
+                jQuery('#' + champ.id).removeClass('match');
+                jQuery('#' + champ.id + ' div.ability').removeClass('match');
+
+                if(sortedMatches[m].searchScore >= displayThreshold) {
+                    for(var a in matchedAbilities) {
+                        jQuery('#' + matchedAbilities[a].id).addClass('match');
+                    }
+                } else {
+                    jQuery('#' + champ.id).addClass('no-match');
+                }
+            }
+        }
 
         jQuery(document).ready(function() {
-            championListInit(allChampions);
+            championListSet(allChampions);
 
             jQuery('#query').bind('keyup', function(event) {
                 if(jQuery(this).val().length >= QUERY_MIN_LENGTH) {
-                    //console.log(jQuery(this).val());
-                    //console.log(jQuery(this).val().length);
-
-                    var term = jQuery(this).val().toLowerCase();
-                    var champ = null;
-                    var ability = null;
-                    var abilityMatch = false;
-                    var tagMatch = false;
-
-                    for(var c in allChampions) {
-                        champ = allChampions[c];
-
-                        // TODO: call getSearchMatchScore() in this loop
-                        // TODO: write, then call here, a function to get the types of matches from a given champ for given terms
-                        if(allChampions[c].searchString.indexOf(term) != -1) {
-                            abilityMatch = false;
-
-
-                            // TODO: do a more thorough search of the champs attributes
-                            for(var a in champ.abilities) {
-                                ability = champ.abilities[a];
-                                tagMatch = false;
-
-                                for(var t in ability.tags) {
-                                        if(ability.tags[t].indexOf(term) != -1) {
-                                            jQuery('#' + champ.id).removeClass('no-match').addClass('match');
-                                            jQuery('#' + ability.id).addClass('match');
-
-                                            tagMatch = true;
-                                            abilityMatch = true;
-                                        }
-                                }
-
-                                if(!tagMatch) {
-                                    jQuery('#' + champ.id + ability.id)
-                                        .removeClass('match')
-                                        .addClass('no-match');
-                                }
-                            }
-
-                            if(!abilityMatch) {
-                                jQuery('#' + champ.id).removeClass('match').addClass('no-match');
-                            }
-                        } else {
-                                jQuery('#' + champ.id).removeClass('match').addClass('no-match');
-                                jQuery('#' + champ.id + ' div.ability').removeClass('match');
-                        }
-                    }
+                    var queryString = jQuery(this).val();
+                    
+                    performSearch(queryString, allChampions, QUERY_MIN_LENGTH, DISPLAY_THRESHOLD_MIN_SCORE);
                 } else {
                     // If the querystring is shorter than our minimum length, then mark all champions and abilities as not matches
                     jQuery('#champion-list div.champion-container.match').removeClass('match');

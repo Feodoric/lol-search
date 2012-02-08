@@ -1,5 +1,6 @@
 var Ability = function(name, key, tags) {
     this.name = name;
+    // TODO: put this regular expression in a variable
     this.id = this.name.toLowerCase().replace(/[^a-z]/gi, '');
     this.key = key;
     this.tags = tags;
@@ -7,6 +8,7 @@ var Ability = function(name, key, tags) {
 
 var Champion = function(name, releaseDate) {
     this.name = name;
+    // TODO: put this regular expression in a variable
     this.id = this.name.toLowerCase().replace(/[^a-z]/gi, '');
     this.releaseDate = new Date(0);
     this.abilities = [];
@@ -34,26 +36,24 @@ Champion.prototype.updateSearchString = function() {
     }
 
     this.searchString = this.searchString.toLowerCase();
-    this.searchString = this.searchString.replace(/[a-zA-Z0-9]+/g, '');
+    // TODO: put this regular expression in a variable somewhere
+    this.searchString = this.searchString.replace(/[^a-zA-Z0-9]+/g, '');
 }
 
 Champion.prototype.getSearchMatchScore = function(searchTerms) {
     var score = 0.0;
 
-    if(typeof searchTerms === 'string') {
+    if(typeof searchTerms === 'String') {
         searchTerms = [searchTerms];
     }
 
-    if(!(typeof searchTerms === 'array')) {
+    if(searchTerms.length === undefined || searchTerms.length == 0) {
         return score;
     }
 
-    // TODO: iterate through searchTerms and check against various attributes of this instance
-    // Assuming that searchTerms is just letters and numbers
     var term = '';
     var tag = '';
-    var ability = null;
-    var matchIndex = -1;
+
     for(var r in searchTerms) {
         term = searchTerms[r];
 
@@ -66,14 +66,18 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
         }
         */
 
-        // TODO: why not score a champion tag the same as an ability tag
+        /* TODO: figure out the UI for searching by champion tags
         for(var t in this.tags) {
             tag = this.tags[t];
 
             if(tag.indexOf(term) > -1) {
-                score += 0.5;
+                score += 1.0;
             }
         }
+        */
+
+        var ability = null;
+        var matchIndex = -1;
 
         for(var a in this.abilities) {
             ability = this.abilities[a];
@@ -81,9 +85,11 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
             for(var t in ability.tags) {
                 tag = ability.tags[t];
 
-                // A perfect match is worth more than a partial match
+                // A exact match is worth more than a partial match
                 matchIndex = tag.indexOf(term);
                 if(matchIndex === 0 && tag.length == term.length) {
+                    score += 1.5;
+                } else if(matchIndex === 0) {
                     score += 1.0;
                 } else if(matchIndex > 0) {
                     score += 0.5;
@@ -95,7 +101,68 @@ Champion.prototype.getSearchMatchScore = function(searchTerms) {
     return score;
 }
 
-var AbilityMatch = function(champion, matchedAbilities) {
+Champion.prototype.getMatchingAbilities = function(searchTerms) {
+    var matchingAbilities = new Array();
+
+    if(typeof searchTerms === 'String') {
+        searchTerms = [searchTerms];
+    }
+
+    if(searchTerms.length === undefined || searchTerms.length == 0) {
+        return score;
+    }
+
+    var term = '';
+    var tag = '';
+
+    for(var r in searchTerms) {
+        term = searchTerms[r];
+
+        var ability = null;
+        var matchIndex = -1;
+
+        for(var a in this.abilities) {
+            ability = this.abilities[a];
+
+            for(var t in ability.tags) {
+                tag = ability.tags[t];
+
+                // If any of an ability's tags match, then move onto the next ability
+                if(tag.indexOf(term) != -1) {
+                    matchingAbilities.push(ability);
+                    break;
+                }
+            }
+        }
+    }
+
+    // TODO: ensure that matchingAbilities contains no duplicates
+    return matchingAbilities;
+}
+
+// STATIC FUNCTION for sending to Array.sort()
+Champion.prototype.sortByName = function(leftChamp, rightChamp) {
+    return leftChamp.name.localeCompare(rightChampe.name);
+}
+
+// STATIC FUNCTION for sending to Array.sort()
+Champion.prototype.sortByReleaseDate = function(leftChamp, rightChamp) {
+    return leftChamp.releaseDate.getTime() - rightChamp.releaseDate.getTime();
+}
+
+
+
+var ChampionMatch = function(champion, searchScore, matchedAbilities) {
     this.champion = champion;
+    this.searchScore = searchScore;
     this.matchedAbilities = matchedAbilities;
+}
+
+// STATIC FUNCTION for sending to Array.sort()
+ChampionMatch.prototype.compareMatches = function(leftMatch, rightMatch) {
+    if(leftMatch.searchScore === rightMatch.searchScore) {
+        return leftMatch.champion.name.localeCompare(rightMatch.champion.name);
+    }
+
+    return rightMatch.searchScore - leftMatch.searchScore;
 }
