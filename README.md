@@ -40,3 +40,6 @@ X give champions tags (e.g. 'tank', 'support', 'pusher', etc)
     * :[number] to jump to matching champion N
     * x to clear the search
 * consider loading minimal data in JS with the page and serving complete champ/ability specs via ajax during the search?
+
+
+Testing some github issues
